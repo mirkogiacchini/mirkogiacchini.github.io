@@ -13,3 +13,11 @@ body {
     border-radius: 1em;
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
+
+h1 {
+    font-size: 42px;
+}
+
+.bolder {
+    font-weight:600;
+}
