@@ -18,6 +18,10 @@ h1 {
     font-size: 42px;
 }
 
+.bold {
+    font-weight:600;
+}
+
 .bolder {
     font-weight:600;
 }
