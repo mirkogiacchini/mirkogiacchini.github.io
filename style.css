@@ -83,25 +83,56 @@ h1 {
     margin-bottom: 0;
 }
 
-/* Numbered list on the publications page (1 = oldest) */
+/* Numbered list on the publications page.
+   The browser numbers the items ("reversed" in the HTML makes the first entry
+   the highest). The number is drawn in the left margin of each item, and the
+   card background is stretched to the left (::before) so the number ends up
+   inside the card. */
+@counter-style plain-decimal {
+    system: extends decimal;
+    suffix: "\2002\2002\2002";     /* gap between number and text: \2003 = 1em, \2002 = 0.5em */
+}
+
 .papers {
-    list-style: none;
+    list-style: plain-decimal outside;
     padding: 0;
     margin: 0;
 }
 
+.papers > li::marker {
+    font-size: 1rem;
+    font-weight: 400;          /* number thickness */
+    color: #6c757d;
+}
+
 .papers .paper {
     position: relative;
-    padding-left: 3.5rem;
+    isolation: isolate;
+    margin-left: 3.5rem;       /* space for the number */
+    padding-left: 0;
+    box-shadow: none;          /* the shadow moves to ::before */
 }
 
 .papers .paper::before {
-    content: counter(list-item);
+    content: "";
     position: absolute;
-    left: 1.25rem;
-    top: 1rem;
-    font-weight: 600;
-    color: #6c757d;
+    top: 0;
+    bottom: 0;
+    left: -3.5rem;             /* same as margin-left above */
+    right: 0;
+    z-index: -1;
+    border-radius: 1em;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    transition: box-shadow 0.2s ease;
+}
+
+.papers .paper:hover {
+    box-shadow: none;
+}
+
+.papers .paper:hover::before {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 /* Co-author links: keep the muted look, underline on hover */
