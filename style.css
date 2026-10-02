@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 body {
     --bs-font-sans-serif: 'Poppins', sans-serif;
     --bs-body-font-family: var(--bs-font-sans-serif);
 }
 
-.container{
+.container {
     max-width: 950px;
 }
 
@@ -13,27 +13,104 @@ h1 {
     font-size: 42px;
 }
 
-.bold {
-    font-weight:600;
-}
-
 .bolder {
-    font-weight:600;
+    font-weight: 600;
 }
 
-.card{
+/* Navigation (stays at the top while scrolling) */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 0;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.site-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.site-nav a {
+    color: #6c757d;
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+    color: #212529;
+    border-bottom-color: #212529;
+}
+
+/* Profile picture */
+.profile-pic {
+    width: 60%;
+    border-radius: 50%;
+}
+
+@media (max-width: 767px) {
+    .profile-pic { width: 100%; }
+}
+
+/* Publication entries */
+.paper {
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
     border-radius: 1em;
-    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card:hover {
-    transform: translateY(-2px); 
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
+.paper:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.profile-pic { width: 100%; }
+.paper h5 {
+    margin-bottom: 0.5rem;
+}
 
-@media (min-width: 750px) { /* md and up in BS5 */
-  .profile-pic { width: 60%; }
+.paper .authors {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .venue {
+    margin-bottom: 0;
+}
+
+/* Numbered list on the publications page (1 = oldest) */
+.papers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.papers .paper {
+    position: relative;
+    padding-left: 3.5rem;
+}
+
+.papers .paper::before {
+    content: counter(list-item);
+    position: absolute;
+    left: 1.25rem;
+    top: 1rem;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+/* Co-author links: keep the muted look, underline on hover */
+.paper .authors a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.paper .authors a:hover {
+    color: #212529;
+    text-decoration: underline;
 }
